@@ -1,9 +1,3 @@
-import Mean_Temperature_max_min
-import Solar_or_shortwave_radiation
-import Slope_Vapour_Pressure_Curve_With_Maen_Temperature as slope
-import Wind_speed_at_2m_above_ground_surface
-import Saturation_Vapour_Pressure_With_Temperature
-import Actual_Vapour_Pressure
 
 class E_free_water : 
 
@@ -214,7 +208,7 @@ class E_free_water :
             R_S = R_S
         
         if delta is None:
-            delta = slope.slope_vapour_pressure_curve_with_maen_temperature(
+            delta = Slope_Vapour_Pressure_Curve_With_Maen_Temperature.slope_vapour_pressure_curve_with_maen_temperature(
                 T_mean = T_mean
             )
         else:
@@ -323,6 +317,9 @@ class E_free_water :
         
 
         return E
+
+
+
 
 
 
