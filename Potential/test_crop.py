@@ -1,4 +1,4 @@
-
+import crop
 
 print(crop.correction_crop_coefficient_for_step_mid_and_end(
     crop_coefficient_mid = 1.15,
