@@ -103,8 +103,10 @@ def calculate_crop_coefficient_for_linear_changes_steps(
         length_mid_crop - length of middle crop in day - Table 11 Page 104 FAO56
     length_late_crop : int
         length_late_crop - length of late crop in day - Table 11 Page 104 FAO56
-    n_day : int
-        n_day - Number of days since the beginning of crop cultivation
+    plant_date : str
+        plant_date - Date of planting in format YYYY-MM-DD - Table 11 Page 104 FAO56 according to Region
+    modeling_date : str
+        modeling_date - Date of modeling in format YYYY-MM-DD
 
 
     Returns
@@ -117,6 +119,7 @@ def calculate_crop_coefficient_for_linear_changes_steps(
     modeling_date = date(int(modeling_date[:4]), int(modeling_date[5:7]), int(modeling_date[8:]))
     n = modeling_date - plant_date
     n_day = n.days
+    # n_day : Number of days since the beginning of crop cultivation
 
     if n_day <= length_ini_crop :
         crop_coefficient = crop_coefficient_ini
