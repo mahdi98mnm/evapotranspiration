@@ -27,5 +27,5 @@ print(crop.calculate_crop_coefficient_for_linear_changes_steps(
     length_dev_crop = 25,
     length_mid_crop = 30,
     length_late_crop = 20,
-    n_day = 40
-))
+    plant_date = '2019-06-01',
+    modeling_date = '2019-09-03'))
