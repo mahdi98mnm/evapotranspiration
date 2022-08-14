@@ -1,5 +1,5 @@
 from datetime import date
-
+import error_crop
 def correction_crop_coefficient_for_step_mid_and_end(
     crop_coefficient_mid : float,
     crop_coefficient_end : float,
@@ -120,7 +120,15 @@ def calculate_crop_coefficient_for_linear_changes_steps(
     n = modeling_date - plant_date
     n_day = n.days
     # n_day : Number of days since the beginning of crop cultivation
-
+    error_crop.check_date_for_crop_coefficient(
+        plant_date = plant_date,
+        modeling_date = modeling_date,
+        n = n_day,
+        length_ini_crop = length_ini_crop,
+        length_dev_crop = length_dev_crop,
+        length_mid_crop = length_mid_crop,
+        length_late_crop = length_late_crop)
+        
     if n_day <= length_ini_crop :
         crop_coefficient = crop_coefficient_ini
 

@@ -19,7 +19,7 @@ crop_coefficient_mid =cor[0]
 
 crop_coefficient_end =cor[1]
 
-print(crop.calculate_crop_coefficient_for_linear_changes_steps(
+print(crop.calculate_crop_coefficient_fors_linear_changes_steps(
     crop_coefficient_ini = 0.15,
     crop_coefficient_mid = crop_coefficient_mid,
     crop_coefficient_end = crop_coefficient_end,
@@ -28,4 +28,4 @@ print(crop.calculate_crop_coefficient_for_linear_changes_steps(
     length_mid_crop = 30,
     length_late_crop = 20,
     plant_date = '2019-06-01',
-    modeling_date = '2019-09-03'))
+    modeling_date = '2019-06-21'))
