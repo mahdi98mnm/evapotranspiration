@@ -12,9 +12,10 @@ from  errors_interception_Gash import(
     )
 
 def saturated_precipitation (
-        canopy_storage_capacity : float,
-        canopy_cover : float,
-        Evaporation_to_Rainfall_Ratio: float)-> float:
+    canopy_storage_capacity : float,
+    canopy_cover : float,
+    Evaporation_to_Rainfall_Ratio: float
+    )-> float:
     """
     Description
     -------------------------
@@ -40,17 +41,16 @@ def saturated_precipitation (
 
     """    
     check_Evaporation_to_Rainfall_Ratio(Evaporation_to_Rainfall_Ratio)
-    saturated_precipitation = -(canopy_storage_capacity/\
-    (canopy_cover * Evaporation_to_Rainfall_Ratio))* math.log(1-Evaporation_to_Rainfall_Ratio)
+    saturated_precipitation = -(canopy_storage_capacity/(canopy_cover * Evaporation_to_Rainfall_Ratio))* math.log(1-Evaporation_to_Rainfall_Ratio)
     
     return(saturated_precipitation)
 
 
 
 def ratio_of_trunk_Storage_Capacity_to_stem_flow (
-        trunk_Storage_Capacity : float,
-        stem_flow :float
-        )->float :
+    trunk_Storage_Capacity : float,
+    stem_flow :float
+)->float :
     """
     Description
     -------------------------
@@ -75,22 +75,20 @@ def ratio_of_trunk_Storage_Capacity_to_stem_flow (
 
     """
     ratio_of_trunk_Storage_Capacity_to_stem_flow = trunk_Storage_Capacity/stem_flow
+
     return(ratio_of_trunk_Storage_Capacity_to_stem_flow)
 
 
 
 def interception_Gash_model(
-        total_precipitation_of_day : float,
-        canopy_storage_capacity : float,
-        canopy_cover : float,
-        Evaporation_to_Rainfall_Ratio: float,
-        ratio_of_trunk_Storage_Capacity_to_stem_flow :float,
-        trunk_Storage_Capacity : float,
-        stem_flow: float)-> float:
-    sp = saturated_precipitation (
-            canopy_storage_capacity = canopy_storage_capacity,
-            canopy_cover = canopy_cover,
-            Evaporation_to_Rainfall_Ratio = Evaporation_to_Rainfall_Ratio)
+    total_precipitation_of_day : float,
+    canopy_storage_capacity : float,
+    canopy_cover : float,
+    Evaporation_to_Rainfall_Ratio: float,
+    trunk_Storage_Capacity : float,
+    stem_flow: float
+)-> float:
+    
     """
     Description
     -------------------------
@@ -121,25 +119,29 @@ def interception_Gash_model(
         trunk_Storage_Capacity : constant value 
         interception : inch
 
-    """    
+    """  
+    sp = saturated_precipitation (
+        canopy_storage_capacity = canopy_storage_capacity,
+        canopy_cover = canopy_cover,
+        Evaporation_to_Rainfall_Ratio = Evaporation_to_Rainfall_Ratio
+    )
+    ratio = ratio_of_trunk_Storage_Capacity_to_stem_flow (
+        trunk_Storage_Capacity = trunk_Storage_Capacity,
+        stem_flow = stem_flow
+    )
     
     check_precipitation( total_precipitation_of_day)
     check_Evaporation_to_Rainfall_Ratio(Evaporation_to_Rainfall_Ratio)
     
     if total_precipitation_of_day < sp :
-         interception= canopy_cover * total_precipitation_of_day
-    elif ( total_precipitation_of_day >= sp 
-    and 
-    total_precipitation_of_day <= ratio_of_trunk_Storage_Capacity_to_stem_flow):
-        interception= canopy_cover * sp +\
-        canopy_cover * Evaporation_to_Rainfall_Ratio * \
-        (total_precipitation_of_day - sp) + stem_flow * total_precipitation_of_day
-    elif (total_precipitation_of_day >= sp 
-    and 
-    total_precipitation_of_day > ratio_of_trunk_Storage_Capacity_to_stem_flow):
-        interception= canopy_cover * sp +\
-        canopy_cover * Evaporation_to_Rainfall_Ratio *\
-        (total_precipitation_of_day - sp) + trunk_Storage_Capacity
+        interception = canopy_cover * total_precipitation_of_day
+         
+    elif ( total_precipitation_of_day >= sp and total_precipitation_of_day <= ratio):
+        interception = (canopy_cover * sp) + (canopy_cover * Evaporation_to_Rainfall_Ratio * (total_precipitation_of_day - sp)) + (stem_flow * total_precipitation_of_day)
+
+    elif (total_precipitation_of_day >= sp and total_precipitation_of_day > ratio):
+        interception = (canopy_cover * sp) + (canopy_cover * Evaporation_to_Rainfall_Ratio * (total_precipitation_of_day - sp)) + trunk_Storage_Capacity
+
     return(interception)
 
    

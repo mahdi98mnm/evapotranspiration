@@ -22,14 +22,14 @@ def soil_water_content_of_first_layer(
         infiltration in milimeter
     evaporation: float
         evaporation in milimeter
-    infiltration_to_next_layer: float
+    infiltration_to_lower_layer: float
         infiltration to lower layer in milimeter
     field_capacity_soil_water_content_of_first_layer: float
         field capacity soil water content of first layer in percent
     permanent_wilting_point_soil_water_content_of_first_layer: float
         permanent wilting point soil water content of first layer in percent
     growing_season: bool
-        growing season yes or no
+        growing season yes(True) or no(False)
     ------------
     Returns
     ------------
@@ -47,14 +47,11 @@ def soil_water_content_of_first_layer(
         first_layer_soil_depth = constant.soil_depth.get(
             'first_layer_not_covered')
 
-    temp_1 = (soil_water_content_of_first_layer_at_previous_step +
-              infiltration - evaporation - infiltration_to_lower_layer)
+    temp_1 = (soil_water_content_of_first_layer_at_previous_step + infiltration - evaporation - infiltration_to_lower_layer)
 
-    temp_2 = (field_capacity_soil_water_content_of_first_layer /
-              100) * (first_layer_soil_depth * 10)
+    temp_2 = (field_capacity_soil_water_content_of_first_layer /100) * (first_layer_soil_depth * 10)
 
-    temp_3 = (permanent_wilting_point_soil_water_content_of_first_layer /
-              100) * (first_layer_soil_depth * 10)
+    temp_3 = (permanent_wilting_point_soil_water_content_of_first_layer / 100) * (first_layer_soil_depth * 10)
 
     if temp_1 < temp_3:
         temp_1 = temp_3

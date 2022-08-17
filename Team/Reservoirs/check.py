@@ -11,10 +11,8 @@ def check_not_negative(
     Check Height value is greater than 0
     Parameters
     ----------
-    Height : float,
-    Height_min : float,
-    Height_max : float
-       in m
+    Height : float
+        Height in m
     """
 
     if Height < 0 :
@@ -31,8 +29,10 @@ def check_max_min(
     Parameters
     ----------
     Height_max : float
-    Height_min : float,
-       in m
+        maximum Height in m
+    Height_min : float
+        minimum Height in m
+       
     """
 
     if Height_max < Height_min :
@@ -53,7 +53,7 @@ def check_Value_p(
        a constant parameter
     """
     
-    if not 1 <= p :
+    if not 1 < p :
         raise ValueError(
             f'p value must be greater than 1: {p}'
         )
@@ -72,7 +72,7 @@ def check_Value_a(
         a constant parameter
     """
     
-    if not 0 <= a :
+    if not 0 < a :
         raise ValueError(
             f'a value must be greater than 0: {a}'
         )

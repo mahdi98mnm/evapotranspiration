@@ -72,19 +72,17 @@ def soil_water_content_of_second_layer(
         second_layer_soil_depth = root_depth
 
         temp_1 = (soil_water_content_of_second_layer_at_previous_step +
-                  infiltration_from_upper_layer - transpiration - infiltration_to_lower_layer +
-                  upward_flux_from_lower_layer)
+                infiltration_from_upper_layer - transpiration - infiltration_to_lower_layer +
+                upward_flux_from_lower_layer)
 
-        temp_2 = (field_capacity_soil_water_content_of_second_layer /
-                  100) * (second_layer_soil_depth * 10)
+        temp_2 = (field_capacity_soil_water_content_of_second_layer / 100) * (second_layer_soil_depth * 10)
 
-        temp_3 = (permanent_wilting_point_soil_water_content_of_second_layer /
-                  100) * (second_layer_soil_depth * 10)
+        temp_3 = (permanent_wilting_point_soil_water_content_of_second_layer / 100) * (second_layer_soil_depth * 10)
         
         if temp_1 < temp_3:
             temp_1 = temp_3
-            transpiration = (soil_water_content_of_second_layer_at_previous_step -
-                             temp_3 + upward_flux_from_lower_layer)
+            transpiration = (soil_water_content_of_second_layer_at_previous_step - temp_3 + upward_flux_from_lower_layer)
+
             return temp_1, transpiration, infiltration_to_lower_layer, irrigation_requirement, deep_percolation
 
         elif temp_1 > temp_2:
@@ -111,11 +109,9 @@ def soil_water_content_of_second_layer(
         temp_1 = (soil_water_content_of_second_layer_at_previous_step +
                   infiltration_from_upper_layer - deep_percolation - upward_flux_to_upper_layer)
 
-        temp_2 = (field_capacity_soil_water_content_of_second_layer /
-                  100) * (second_layer_soil_depth * 10)
+        temp_2 = (field_capacity_soil_water_content_of_second_layer / 100) * (second_layer_soil_depth * 10)
 
-        temp_3 = (permanent_wilting_point_soil_water_content_of_second_layer /
-                  100) * (second_layer_soil_depth * 10)
+        temp_3 = (permanent_wilting_point_soil_water_content_of_second_layer / 100) * (second_layer_soil_depth * 10)
 
         if temp_1 > temp_2:
             deep_percolation = temp_1 - temp_2

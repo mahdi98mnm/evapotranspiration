@@ -10,7 +10,7 @@ from typing import List, Dict, Tuple, Set, Optional, Union, Any, NoReturn
 def snow_fall(
     tmax : float,
     tmin : float,
-    tmean : float, 
+    tmean : float
 ):
 
     """

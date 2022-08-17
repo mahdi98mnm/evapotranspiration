@@ -28,6 +28,6 @@ def evaporation_sublimation_snow_ice_surface(
     Returns
     -------
     E : float
-       Evaporation 
+       Evaporation [mm / day]
     """
     return ((0.18 + 0.98 * u10) * (esn - e2))
