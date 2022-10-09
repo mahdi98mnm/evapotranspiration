@@ -1,88 +1,109 @@
 from typing import List, Dict, Tuple, Set, Optional, Union, Any, NoReturn
 import constant
 
-
-def soil_water_content_of_third_layer(
-    growing_season: bool,
-    field_capacity_soil_water_content_of_third_layer: float,
-    permanent_wilting_point_soil_water_content_of_third_layer: float,
-    soil_water_content_of_third_layer_at_previous_step: float,
+# khoroji ha hamegi float bashad ... toye return ha float ezafe shvad khob ast?
+def soil_water_content_of_trans_layer(
+    coverd: bool,
+    field_capacity_soil_water_content_of_trans_layer: float,
+    permanent_wilting_point_soil_water_content_of_trans_layer: float,
+    soil_water_content_of_trans_layer_at_previous_step: float,
     deep_percolation: float,
-    upward_flux_to_upper_layer: float = 0,
-    infiltration_from_upper_layer: float = 0
+    infiltration_from_transp_to_trans_layer : float = 0,
+    upward_flux_from_trans_to_transp_layer: float = 0
 ) -> float:
     """
     Description
     ------------
-    calculating soil water content of third layer
+    calculating soil water content of trans layer
     ------------
-    growing_season: bool
-        growing season yes or no
-    field_capacity_soil_water_content_of_third_layer: float
-        field capacity soil water content of third layer in percent
-    permanent_wilting_point_soil_water_content_of_third_layer: float
-        permanent wilting point soil water content of third layer in percent
-    soil_water_content_of_third_layer_at_previous_step: float
-        soil water content of third layer at previous step in milimeter
+    coverd: bool
+        corved yes(True) or not coverd no(False)
+    field_capacity_soil_water_content_of_trans_layer: float
+        field capacity soil water content of trans layer in percent
+    permanent_wilting_point_soil_water_content_of_trans_layer: float
+        permanent wilting point soil water content of trans layer in percent
+    soil_water_content_of_trans_layer_at_previous_step: float
+        soil water content of trans layer at previous step in milimeter
     deep_percolation: float
         deep percolation in milimeter
-    infiltration_from_upper_layer: float
-        infiltration from upper layer in milimeter
-    upward_flux_to_upper_layer: float
-        upward flux to upper layer in milimeter
+    infiltration_from_transp_to_trans_layer : float
+        infiltration from transpiration to transition layer in milimeter
+    upward_flux_from_trans_to_transp_layer: float
+        upward flux from transition to transpiration layer in milimeter
     ------------
     Returns
     ------------
-    first one: soil_water_content_of_third_layer: float
-        soil water content of third layer in milimeter
-    second one: upward_flux_to_upper_layer: float
-        upward flux to upper layer in milimeter
-    third one: deep_percolation: float
-        deep percolation in milimeter
+    soil_water_content_of_trans_layer: float
+        soil water content of trans layer in milimeter
     """
-    if upward_flux_to_upper_layer > 0:
-        infiltration_from_upper_layer = 0
     
-    if infiltration_from_upper_layer > 0:
-        upward_flux_to_upper_layer = 0
+    if coverd is False:
 
-    if growing_season is True:
-        third_layer_soil_depth = constant.soil_depth.get('third_layer_covered')
+        return('while there is no crop, trans layer is not defined ')
 
-        temp_1 = (soil_water_content_of_third_layer_at_previous_step - deep_percolation +
-                  infiltration_from_upper_layer - upward_flux_to_upper_layer)
+        
+    else:
 
-        temp_2 = (field_capacity_soil_water_content_of_third_layer /
-                  100) * (third_layer_soil_depth * 10)
+        trans_layer_soil_depth = constant.soil_depth.get('trans_layer_covered')
 
-        temp_3 = (permanent_wilting_point_soil_water_content_of_third_layer /
-                  100) * (third_layer_soil_depth * 10)
+        if infiltration_from_transp_to_trans_layer > 0:
+            upward_flux_from_trans_to_transp_layer = 0
+    
+        if upward_flux_from_trans_to_transp_layer > 0:
+            infiltration_from_transp_to_trans_layer = 0
+
+
+        temp_1 = (soil_water_content_of_trans_layer_at_previous_step + infiltration_from_transp_to_trans_layer
+                 - deep_percolation - upward_flux_from_trans_to_transp_layer)
+
+        temp_2 = (field_capacity_soil_water_content_of_trans_layer / 100) * (trans_layer_soil_depth * 10)
+
+        temp_3 = (permanent_wilting_point_soil_water_content_of_trans_layer / 100) * (trans_layer_soil_depth * 10)
+
 
         if temp_1 < temp_3:
-            upward_flux_from_lower_layer = upward_flux_from_lower_layer - (temp_3 - temp_1) 
-            # upward_flux_to_upper_layer = (
-            #     soil_water_content_of_third_layer_at_previous_step - deep_percolation - temp_3)
+            upward_flux_from_trans_to_transp_layer = upward_flux_from_trans_to_transp_layer - (temp_3 - temp_1) 
             temp_1 = temp_3
-            return temp_1, upward_flux_to_upper_layer, deep_percolation
+
+            return temp_1
 
         elif temp_1 > temp_2:
             deep_percolation = (temp_1 - temp_2)
             temp_1 = temp_2
-            return temp_1, upward_flux_to_upper_layer, deep_percolation
+
+            return temp_1
 
         else:
-            return temp_1, upward_flux_to_upper_layer, deep_percolation
-
-    else:
-        return('while there is no crop, third layer is not defined ')
+            return temp_1
 
 
 # test
-# print(soil_water_content_of_third_layer(
-#     growing_season = True,
-#     field_capacity_soil_water_content_of_third_layer = 40,
-#     permanent_wilting_point_soil_water_content_of_third_layer = 20,
-#     soil_water_content_of_third_layer_at_previous_step = 200,
+# kamtar az PWP
+# print(soil_water_content_of_trans_layer(
+#     coverd = True,
+#     field_capacity_soil_water_content_of_trans_layer = 40,
+#     permanent_wilting_point_soil_water_content_of_trans_layer = 20,
+#     soil_water_content_of_trans_layer_at_previous_step = 200,
 #     deep_percolation = 10,
-#     upward_flux_to_upper_layer = 0,
-#     infiltration_from_upper_layer = 20))
+#     infiltration_from_transp_to_trans_layer = 5,
+#     upward_flux_from_trans_to_transp_layer= 5))
+
+# bishtar az FC
+# print(soil_water_content_of_trans_layer(
+#     coverd = True,
+#     field_capacity_soil_water_content_of_trans_layer = 40,
+#     permanent_wilting_point_soil_water_content_of_trans_layer = 20,
+#     soil_water_content_of_trans_layer_at_previous_step = 400,
+#     deep_percolation = 5,
+#     infiltration_from_transp_to_trans_layer = 10,
+#     upward_flux_from_trans_to_transp_layer= 5))
+
+# beyne PWP va FC
+# print(soil_water_content_of_trans_layer(
+#     coverd = True,
+#     field_capacity_soil_water_content_of_trans_layer = 40,
+#     permanent_wilting_point_soil_water_content_of_trans_layer = 20,
+#     soil_water_content_of_trans_layer_at_previous_step = 300,
+#     deep_percolation = 5,
+#     infiltration_from_transp_to_trans_layer = 10,
+#     upward_flux_from_trans_to_transp_layer= 5))

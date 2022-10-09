@@ -45,3 +45,4 @@ def extraterrestrial_radiation(
 
 # Check_Calculate Extraterrestrial Radiation ----- page47 EX8 FAO56
 # print(extraterrestrial_radiation(degree = -20 , minute = 0 , second = 0 , stddate = '2019-09-03'))
+# print(extraterrestrial_radiation(degree = 40 , minute = 6 , second = 30 , stddate = '1979-01-01'))
