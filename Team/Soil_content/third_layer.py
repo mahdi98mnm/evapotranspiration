@@ -99,11 +99,11 @@ def soil_water_content_of_trans_layer(
 #     upward_flux_from_trans_to_transp_layer= 5))
 
 # beyne PWP va FC
-# print(soil_water_content_of_trans_layer(
-#     coverd = True,
-#     field_capacity_soil_water_content_of_trans_layer = 40,
-#     permanent_wilting_point_soil_water_content_of_trans_layer = 20,
-#     soil_water_content_of_trans_layer_at_previous_step = 300,
-#     deep_percolation = 5,
-#     infiltration_from_transp_to_trans_layer = 10,
-#     upward_flux_from_trans_to_transp_layer= 5))
+print(soil_water_content_of_trans_layer(
+    coverd = True,
+    field_capacity_soil_water_content_of_trans_layer = 40,
+    permanent_wilting_point_soil_water_content_of_trans_layer = 20,
+    soil_water_content_of_trans_layer_at_previous_step = 300,
+    deep_percolation = 5,
+    infiltration_from_transp_to_trans_layer = 10,
+    upward_flux_from_trans_to_transp_layer= 5))

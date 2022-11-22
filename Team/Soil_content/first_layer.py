@@ -100,13 +100,13 @@ def soil_water_content_of_evap_layer(
 
 
 # Test : PWP > soil water content
-# print(soil_water_content_of_evap_layer(
-#     field_capacity_soil_water_content_of_evap_layer=40,
-#     permanent_wilting_point_soil_water_content_of_evap_layer=20,
-#     soil_water_content_of_evap_layer_at_previous_step=21,
-#     infiltration=4,
-#     evaporation=2,
-#     infiltration_to_transp_layer = 5,
-#     infiltration_to_trans_layer = 5,
-#     coverd=True
-# ))
+print(soil_water_content_of_evap_layer(
+    field_capacity_soil_water_content_of_evap_layer=40,
+    permanent_wilting_point_soil_water_content_of_evap_layer=20,
+    soil_water_content_of_evap_layer_at_previous_step=21,
+    infiltration=4,
+    evaporation=2,
+    infiltration_to_transp_layer = 5,
+    infiltration_to_trans_layer = 5,
+    coverd=True
+))

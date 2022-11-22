@@ -135,20 +135,20 @@ def soil_water_content_of_transp_layer(
 # )
 
 # bishtar az MAD
-# print(soil_water_content_of_transp_layer(
-#     coverd = True,
-#     field_capacity_soil_water_content_of_transp_layer = 40,
-#     permanent_wilting_point_soil_water_content_of_transp_layer = 10,
-#     soil_water_content_of_transp_layer_at_previous_step = 180,
-#     infiltration_from_evap_to_transp_layer = 20,
-#     infiltration_from_transp_to_trans_layer = 2,
-#     stress_coefficient = 0.8,
-#     transpiration = 5,
-#     upward_flux_from_trans_to_transp_layer = 5,
-#     upward_flux_from_transp_to_evap_layer = 5,
-#     root_depth = 100,
-#     MAD = 0.5)
-# )
+print(soil_water_content_of_transp_layer(
+    coverd = True,
+    field_capacity_soil_water_content_of_transp_layer = 40,
+    permanent_wilting_point_soil_water_content_of_transp_layer = 10,
+    soil_water_content_of_transp_layer_at_previous_step = 180,
+    infiltration_from_evap_to_transp_layer = 20,
+    infiltration_from_transp_to_trans_layer = 2,
+    stress_coefficient = 0.8,
+    transpiration = 5,
+    upward_flux_from_trans_to_transp_layer = 5,
+    upward_flux_from_transp_to_evap_layer = 5,
+    root_depth = 100,
+    MAD = 0.5)
+)
 
 # kamtar az MAD
 # print(soil_water_content_of_transp_layer(
