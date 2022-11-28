@@ -19,7 +19,7 @@ crop_coefficient_mid =cor[0]
 
 crop_coefficient_end =cor[1]
 
-print(crop.calculate_crop_coefficient_fors_linear_changes_steps(
+print(crop.calculate_crop_coefficient_for_linear_changes_steps(
     crop_coefficient_ini = 0.15,
     crop_coefficient_mid = crop_coefficient_mid,
     crop_coefficient_end = crop_coefficient_end,
